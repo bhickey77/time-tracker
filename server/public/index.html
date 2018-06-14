@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- STYLES -->
+        <link rel="stylesheet" href="styles/style.css">
+
+        <!-- SCRIPTS -->
+        <script src="vendors/angular.min.js"></script>
+        <script src="vendors/angular-route.min.js"></script>
+
+        <script src="scripts/appConfig.js"></script>
+
+        <script src="scripts/controllers/homeController.js"></script>
+        <script src="scripts/controllers/addController.js"></script>
+        <script src="scripts/controllers/projectController.js"></script>
+        <script src="scripts/controllers/reportController.js"></script>
+
+        <script src="scripts/services/homeService.js"></script>
+        <script src="scripts/services/addService.js"></script>
+        <script src="scripts/services/projectService.js"></script>
+        <script src="scripts/services/reportService.js"></script>
+
+    </head>
+    <body ng-app="timeTrackerApp">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <span><a href="#!/">Home</a> | </span> 
+        <span><a href="#!/add">Add</a> | </span> 
+        <span><a href="#!/project">Projects</a></span>
+        <span><a href="#!/report">Reports</a></span>
+        
+        <ng-view></ng-view>
+
+     
+
+
+        <script src="" async defer></script>
+    </body>
+</html>
