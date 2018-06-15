@@ -1,4 +1,4 @@
-let app = angular.module('timeTrackerApp', ['ngRoute']);
+let app = angular.module('timeTrackerApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngMaterialDatePicker', 'ngTable']);
 
 app.config(function($routeProvider){
     $routeProvider.when('/', {
@@ -17,3 +17,8 @@ app.config(function($routeProvider){
         template: '<h1>404</h1>'
     });
 });
+
+
+
+
+

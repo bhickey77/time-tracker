@@ -19,9 +19,17 @@
   "homepage": "https://github.com/bhickey77/time-tracker#readme",
   "dependencies": {
     "angular": "^1.7.2",
+    "angular-animate": "^1.7.2",
+    "angular-aria": "^1.7.2",
+    "angular-material": "^1.1.9",
+    "angular-material-time-picker": "^1.0.8",
+    "angular-messages": "^1.7.2",
     "angular-route": "^1.7.2",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "moment": "^2.22.2",
+    "ng-material-datetimepicker": "^1.15.2",
+    "ng-table": "^3.0.1",
     "pg": "^7.4.3"
   }
 }
