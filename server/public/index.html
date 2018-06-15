@@ -47,16 +47,24 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        
-        <span><a href="#!/">Home</a> | </span> 
-        <span><a href="#!/add">Add</a> | </span> 
-        <span><a href="#!/project">Projects</a></span>
-        <span><a href="#!/report">Reports</a></span>
+        <md-content class="md-padding">
+            <md-nav-bar
+                md-no-ink-bar="disableInkBar"
+                md-selected-nav-item="currentNavItem"
+                nav-bar-aria-label="navigation links">
+                <md-nav-item md-nav-href="#!/add" name="page1">
+                    Entries
+                </md-nav-item>
+                <md-nav-item md-nav-href="#!/project" name="page2">
+                    Projects
+                </md-nav-item>
+                <md-nav-item md-nav-href="#!/report" name="page3">
+                    Reports
+                </md-nav-item>
+            </md-nav-bar>
+        </md-content>
         
         <ng-view></ng-view>
-
-     
-
 
         <script src="" async defer></script>
     </body>

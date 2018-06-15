@@ -12,7 +12,7 @@
             <label>Project</label>
             <md-select ng-model="vm.input.project_id">
                 <md-option ng-repeat="project in vm.projects" value="{{project.id}}">
-                {{project.name}}
+                {{project.project_name}}
                 </md-option>
             </md-select>
         </md-input-container>
@@ -30,12 +30,18 @@
     </div>
     
     
-    <table ng-table="vm.tableParams" class="table" show-filter="true">
+    <table ng-table="vm.tableParams" class="table" show-filter="true">        
         <tr ng-repeat="entry in $data">
             <td title="'Name'" filter="{ item: 'text'}" sortable="'item'">
                 {{entry.item}}</td>
             <td title="'Project'" filter="{ project_name: 'text'}" sortable="'project_name'">
                 {{entry.project_name}}</td>
+            <td title="'Date'" filter="{ date: 'text'}" sortable="'item_date_milli_from_epoch'">
+                {{entry.date}}</td>
+            <td title="'Time'" filter="{ hours: 'text'}" sortable="'hours'">
+                {{entry.hours}}</td>
+            <td title="'Delete'" filter="{}" sortable="''">
+                <button ng-click="vm.handleDelete(entry.id)">Delete</button></td>
         </tr>
     </table>
 

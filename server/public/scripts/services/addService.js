@@ -3,7 +3,7 @@ app.service('AddService', function($http){
     let sv = this;
 
     sv.entries = {list: []};
-
+    
     sv.getEntries = function(){             
         console.log('getting entries');
         return $http({
@@ -11,7 +11,7 @@ app.service('AddService', function($http){
             url: '/entry'
         }).then(function(response) {
             console.log('back from the server with: ', response);
-            sv.entries.list = response.data;
+            sv.entries.list = sv.formatEntires(response.data);            
         }).catch(function(error){
             console.log('error with the server: ', error);
         })
@@ -29,6 +29,8 @@ app.service('AddService', function($http){
             milliseconds: entryTime,
             project_id: inputObject.project_id
         }        
+        console.log(objectToSend);
+        
         return $http({
             method: 'POST',
             url: '/entry',
@@ -38,6 +40,26 @@ app.service('AddService', function($http){
         }).catch(function(error){
             console.log('error with the server: ', error);
         })
+    }
+
+    sv.deleteFromServer = function(entry_id){
+        console.log(`service delete from server: `, entry_id);
+        return $http({
+            method: 'DELETE',
+            url: `/entry/${entry_id}`
+        }).then(function(response){
+            console.log('back from the server with: ', response);      
+        }).catch(function(error){
+            console.log('error from the server: ', error);  
+        });
+    }
+
+    sv.formatEntires = function(entries){
+        return entries.map(function(entry){
+            entry.hours = (entry.entry_time_milliseconds/60000/60).toFixed(1);
+            entry.date = moment.unix(entry.item_date_milli_from_epoch/1000).format('MMM Do, YYYY');
+            return entry;
+        });
     }
 
 })
