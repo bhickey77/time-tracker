@@ -1,5 +1,6 @@
 app.controller('ReportController', function(ReportService){
+    let verbose = false;
     let self = this;
-    console.log('ReportController woot');
+    verbose && console.log('ReportController woot');
     
 });

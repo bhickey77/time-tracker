@@ -1,19 +1,20 @@
 app.service('AddService', function($http){
-    console.log('AddService woot');
+    let verbose = false;
+    verbose && console.log('AddService woot');
     let sv = this;
 
     sv.entries = {list: []};
     
     sv.getEntries = function(){             
-        console.log('getting entries');
+        verbose && console.log('getting entries');
         return $http({
             method: 'GET',
             url: '/entry'
         }).then(function(response) {
-            console.log('back from the server with: ', response);
+            verbose && console.log('back from the server with: ', response);
             sv.entries.list = sv.formatEntires(response.data);            
         }).catch(function(error){
-            console.log('error with the server: ', error);
+            verbose && console.log('error with the server: ', error);
         })
     }
 
@@ -29,34 +30,36 @@ app.service('AddService', function($http){
             milliseconds: entryTime,
             project_id: inputObject.project_id
         }        
-        console.log(objectToSend);
+        verbose && console.log(objectToSend);
         
         return $http({
             method: 'POST',
             url: '/entry',
             data: objectToSend
         }).then(function(response) {
-            console.log('back from the server with: ', response);
+            verbose && console.log('back from the server with: ', response);
         }).catch(function(error){
-            console.log('error with the server: ', error);
+            verbose && console.log('error with the server: ', error);
         })
     }
 
     sv.deleteFromServer = function(entry_id){
-        console.log(`service delete from server: `, entry_id);
+        verbose && console.log(`service delete from server: `, entry_id);
         return $http({
             method: 'DELETE',
             url: `/entry/${entry_id}`
         }).then(function(response){
-            console.log('back from the server with: ', response);      
+            verbose && console.log('back from the server with: ', response);      
         }).catch(function(error){
-            console.log('error from the server: ', error);  
+            verbose && console.log('error from the server: ', error);  
         });
     }
 
     sv.formatEntires = function(entries){
         return entries.map(function(entry){
-            entry.hours = (entry.entry_time_milliseconds/60000/60).toFixed(1);
+            let hours = Math.floor(entry.entry_time_milliseconds/3600000);
+            let remainingMinutes = ((entry.entry_time_milliseconds % 3600000)/60000).toFixed();
+            entry.time_spent = hours + ':' + ((remainingMinutes<10) ? ('0' + remainingMinutes) : remainingMinutes);
             entry.date = moment.unix(entry.item_date_milli_from_epoch/1000).format('MMM Do, YYYY');
             return entry;
         });

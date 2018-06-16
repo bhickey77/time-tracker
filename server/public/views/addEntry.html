@@ -1,35 +1,7 @@
 <div class="container" layout="column" ng-cloak class="md-inline-form">
-    <h1>
-        Add Entry
-    </h1>
-    
-    <div layout="column" ng-cloak class="md-inline-form">
-        <md-input-container class="md-block">
-            <label>Entry Item</label>
-            <input ng-model="vm.input.item">
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm>
-            <label>Project</label>
-            <md-select ng-model="vm.input.project_id">
-                <md-option ng-repeat="project in vm.projects" value="{{project.id}}">
-                {{project.project_name}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-        <md-input-container>
-            <label>Enter date</label>
-            <md-datepicker ng-model="vm.input.item_date_raw"></md-datepicker>
-        </md-input-container>
-        start time
-        <input type="time" ng-model="vm.input.start_time_raw">
-        end time
-        <input type="time" ng-model="vm.input.end_time_raw">
-        <div>
-            <md-button ng-click="vm.handleSubmit()" type="submit">Submit</md-button>
-        </div>
-    </div>
-    
-    
+    <md-button class="md-primary md-raised" ng-click="vm.showEntryDialog($event)">
+        Add Time Entry
+    </md-button>
     <table ng-table="vm.tableParams" class="table" show-filter="true">        
         <tr ng-repeat="entry in $data">
             <td title="'Name'" filter="{ item: 'text'}" sortable="'item'">
@@ -38,8 +10,8 @@
                 {{entry.project_name}}</td>
             <td title="'Date'" filter="{ date: 'text'}" sortable="'item_date_milli_from_epoch'">
                 {{entry.date}}</td>
-            <td title="'Time'" filter="{ hours: 'text'}" sortable="'hours'">
-                {{entry.hours}}</td>
+            <td title="'Time'" filter="{ hours: 'text'}" sortable="'time_spent'">
+                {{entry.time_spent}}</td>
             <td title="'Delete'" filter="{}" sortable="''">
                 <button ng-click="vm.handleDelete(entry.id)">Delete</button></td>
         </tr>

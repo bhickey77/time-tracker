@@ -1,5 +1,6 @@
 app.service('ReportService', function($http){
-    console.log('ReportService woot');
+    let verbose = false;
+    verbose && console.log('ReportService woot');
     let sv = this;
     
 })

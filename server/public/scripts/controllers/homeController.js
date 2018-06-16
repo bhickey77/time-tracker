@@ -1,5 +1,6 @@
 app.controller('HomeController', function(HomeService){
+    let verbose = false;
     let self = this;
-    console.log('HomeController woot');
+    verbose && console.log('HomeController woot');
     
 });

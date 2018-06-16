@@ -1,0 +1,36 @@
+<div layout="column" ng-cloak class="md-inline-form dialog-entry">
+     <div class="dialog-padding">
+         <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Time Entry</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+         </md-toolbar>
+         <md-input-container class="md-block">
+             <label>Name of Entry</label>
+             <input ng-model="vm.input.item">
+         </md-input-container>
+         <md-input-container class="md-block" flex-gt-sm>
+             <label>Project</label>
+             <md-select ng-model="vm.input.project_id">
+                 <md-option ng-repeat="project in vm.projects" value="{{project.id}}">
+                 {{project.project_name}}
+                 </md-option>
+             </md-select>
+         </md-input-container>
+         <md-input-container>
+             <label>Date</label>
+             <md-datepicker ng-model="vm.input.item_date_raw"></md-datepicker>
+         </md-input-container>
+         start time
+         <input type="time" ng-model="vm.input.start_time_raw">
+         end time
+         <input type="time" ng-model="vm.input.end_time_raw">
+         <div>
+             <md-button class="md-raised entry-submit" ng-click="vm.handleSubmit()" type="submit">Submit</md-button>
+         </div>
+     </div>   
+</div>
