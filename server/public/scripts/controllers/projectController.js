@@ -1,5 +1,5 @@
 app.controller('ProjectController', ['ProjectService', 'NgTableParams', function(ProjectService, NgTableParams){
-    let verbose = false;
+    let verbose = true;
     let self = this;
     verbose && console.log('ProjectController woot');
     
@@ -15,6 +15,16 @@ app.controller('ProjectController', ['ProjectService', 'NgTableParams', function
     self.deleteProject = function(project_id){
         ProjectService.removeProjectFromServer(project_id).then(function(response){
             self.requestProjects();          
+        })
+    }
+
+    self.handleSubmit = function(){
+        ProjectService.addProjectToServer(self.input).then(function(response){
+            self.requestProjects();
+            for(field in self.input){
+                self.input[field] = null;
+            }
+            // $mdDialog.hide();
         })
     }
 

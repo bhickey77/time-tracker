@@ -13,7 +13,7 @@ app.controller('AddController', ['AddService', 'ProjectService', 'NgTableParams'
             for(field in self.input){
                 self.input[field] = null;
             }
-            $mdDialog.close();
+            $mdDialog.hide();
         })
     }
 

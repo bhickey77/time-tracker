@@ -1,5 +1,5 @@
 app.service('ProjectService', function($http){
-    let verbose = false;
+    let verbose = true;
     verbose && console.log('ProjectService woot');
     let sv = this;
     
@@ -34,6 +34,18 @@ app.service('ProjectService', function($http){
             verbose && console.log('successfully deleted from server: ', response);
         }).catch(function(error){
             verbose && console.log('error from the server')
+        });
+    }
+
+    sv.addProjectToServer = function(inputs){
+        return $http({
+            url: '/project',
+            method: 'POST',
+            data: inputs
+        }).then(function(response){
+            verbose && console.log('successfully added to server: ', response);
+        }).catch(function(error){
+            verbose && console.log('error from the server');
         });
     }
 

@@ -1,4 +1,4 @@
-let verbose = false;
+let verbose = true;
 
 const express = require('express');
 const router = express.Router();
@@ -17,6 +17,21 @@ router.get('/', (req, res) => {
             verbose && console.log('back from the db with: ', error);
             res.sendStatus(500);
         });
+});
+
+router.post('/', (req, res) => {
+    verbose && console.log(req.body);
+    let queryText =     `INSERT INTO project (project_name)
+                         VALUES ($1)`;
+    pool.query(queryText,
+        [req.body.project_name])
+        .then(function(response){
+            verbose && console.log('successfully inserted into db: ', response);
+            res.sendStatus(200);
+        }).catch(function(error){
+            verbose && console.log('')  
+            res.sendStatus(500);
+        });;
 });
 
 router.delete('/:id', (req, res) => {
