@@ -32,8 +32,9 @@ md-card {
     margin: 15px;
 }
 
-.entry-submit {
+.submit-button {
     float: right;
     width: 100%;
     margin: 0 auto;
+    margin-bottom: 10px;
 }

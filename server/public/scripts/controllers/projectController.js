@@ -1,4 +1,4 @@
-app.controller('ProjectController', ['ProjectService', 'NgTableParams', function(ProjectService, NgTableParams){
+app.controller('ProjectController', ['ProjectService', 'NgTableParams', '$mdDialog', function(ProjectService, NgTableParams, $mdDialog){
     let verbose = true;
     let self = this;
     verbose && console.log('ProjectController woot');
@@ -7,12 +7,14 @@ app.controller('ProjectController', ['ProjectService', 'NgTableParams', function
 
     self.requestProjects = function(){
         ProjectService.getProjects().then(function(response){
+            verbose && console.log('back from service: ', response);
+            console.log('projects list: ', ProjectService.projects.list);
             let data = ProjectService.projects.list;
             self.tableParams = new NgTableParams({count: data.length}, {dataset: data, counts: []});
         })
     }
 
-    self.deleteProject = function(project_id){
+    self.handleDelete = function(project_id){
         ProjectService.removeProjectFromServer(project_id).then(function(response){
             self.requestProjects();          
         })
@@ -24,8 +26,30 @@ app.controller('ProjectController', ['ProjectService', 'NgTableParams', function
             for(field in self.input){
                 self.input[field] = null;
             }
-            // $mdDialog.hide();
+            $mdDialog.hide();
         })
+    }
+
+    self.status = '  ';
+    self.customFullscreen = false;
+
+    self.showProjectDialog = function(){
+        $mdDialog.show({
+            parent: angular.element(document.body),
+            templateUrl: '../../views/dialogs/projectDialog.html',
+            bindToController: true,
+            locals: {
+                close: function close(){
+                    $mdDialog.cancel();
+                },
+                projects: self.projects,
+                handleSubmit: self.handleSubmit,
+                input: self.input
+            },
+            controller: function(){},
+            controllerAs: 'vm',
+            clickOutsideToClose: true
+        });
     }
 
     self.requestProjects();

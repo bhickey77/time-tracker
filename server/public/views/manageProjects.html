@@ -2,16 +2,9 @@
     <h1>
         Add Project
     </h1>
-    
-    <div layout="column" ng-cloak class="md-inline-form">
-        <md-input-container class="md-block">
-            <label>Entry Item</label>
-            <input ng-model="vm.input.project_name">
-        </md-input-container>
-        <div>
-            <md-button ng-click="vm.handleSubmit()" type="submit">Submit</md-button>
-        </div>
-    </div>
+    <md-button class="md-primary md-raised" ng-click="vm.showProjectDialog($event)">
+        Add New Project
+    </md-button>
 
     <table ng-table="vm.tableParams" class="table" show-filter="true">        
         <tr ng-repeat="project in $data">

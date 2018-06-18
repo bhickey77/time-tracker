@@ -6,8 +6,8 @@ const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
     let queryText =    `SELECT project.id, project.project_name, SUM(entry.entry_time_milliseconds) as total_entry_time_milliseconds FROM project
-                        JOIN entry_project ON project.id = entry_project.project_id
-                        JOIN entry ON entry.id = entry_project.entry_id
+                        LEFT JOIN entry_project ON project.id = entry_project.project_id
+                        LEFT JOIN entry ON entry.id = entry_project.entry_id
                         GROUP BY project.id;`
     pool.query(queryText)
         .then(function(response){
@@ -35,14 +35,17 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    let queryText =     `DELETE FROM projects 
+    verbose && console.log('in delete project: ', req.params.id);
+    let queryText =     `DELETE FROM project 
                          WHERE id = $1`;
-    pool.query(queryText)
+    pool.query(queryText,
+        [req.params.id])
         .then(function(response){
             verbose && console.log('successfully deleted from the db:  ', response);
-            
+            res.sendStatus(200);
         }).catch(function(error){
-
+            verbose && console.log('error deleting from the db: ', error);
+            res.sendStatus(500);
         });
 });
 

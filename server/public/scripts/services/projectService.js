@@ -23,12 +23,14 @@ app.service('ProjectService', function($http){
             let remainingMinutes = ((project.total_entry_time_milliseconds % 3600000)/60000).toFixed();
             project.time_spent = hours + ':' + ((remainingMinutes<10) ? ('0' + remainingMinutes) : remainingMinutes);
             return project;
+        }).filter(function(project){
+            return project.project_name != null;
         });
     }
 
     sv.removeProjectFromServer = function(project_id){
         return $http({
-            url: `/project${project_id}`,
+            url: `/project/${project_id}`,
             method: 'DELETE'
         }).then(function(response){
             verbose && console.log('successfully deleted from server: ', response);

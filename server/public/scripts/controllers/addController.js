@@ -53,7 +53,7 @@ app.controller('AddController', ['AddService', 'ProjectService', 'NgTableParams'
     self.showEntryDialog = function(){
         $mdDialog.show({
             parent: angular.element(document.body),
-            templateUrl: '../../views/entryDialog.html',
+            templateUrl: '../../views/dialogs/entryDialog.html',
             bindToController: true,
             locals: {
                 close: function close(){
