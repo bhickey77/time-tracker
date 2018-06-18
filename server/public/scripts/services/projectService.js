@@ -39,15 +39,31 @@ app.service('ProjectService', function($http){
         });
     }
 
-    sv.addProjectToServer = function(inputs){
+    sv.addProjectToServer = function(project_name){
+        console.log('in service add, inputs: ', project_name);
+        let objectToSend = {project_name: project_name};
         return $http({
             url: '/project',
             method: 'POST',
-            data: inputs
+            data: objectToSend
         }).then(function(response){
             verbose && console.log('successfully added to server: ', response);
         }).catch(function(error){
             verbose && console.log('error from the server');
+        });
+    }
+
+    sv.updateProjectOnServer = function(id, name){
+        console.log('in service update: id: ', id, 'name: ', name);
+        let objectToSend = {project_name: name};
+        return $http({
+            url: `/project/${id}`,
+            method: 'PUT',
+            data: objectToSend
+        }).then(function(response){
+            verbose && console.log('back from the server with: ', response);
+        }).catch(function(error){
+            verbose && console.log('error on the server: ', error);
         });
     }
 

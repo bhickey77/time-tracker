@@ -1,0 +1,21 @@
+<div layout="column" ng-cloak class="md-inline-form dialog-entry">
+    <form ng-submit="vm.handleUpdate(vm.update_name)">
+        <div class="dialog-padding">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>Update Project Name for: {{vm.update_name}}</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-input-container class="md-block">
+                <label>Project Name</label>
+                <input ng-model="vm.update_name" ng-value="vm.update_name">
+            </md-input-container>
+            <div>
+                <md-button class="md-raised submit-button" type="submit">Update Name</md-button>
+            </div>
+        </div>   
+    </form>   
+</div>

@@ -49,4 +49,22 @@ router.delete('/:id', (req, res) => {
         });
 });
 
+router.put('/:id', (req, res) => {
+    verbose && console.log('in projects put: ', req.body.project_name, req.params.id);
+    let queryText =     `UPDATE project
+                         SET project_name = $1
+                         WHERE project.id = $2;`
+    pool.query(queryText, 
+        [req.body.project_name, req.params.id])
+        .then(function(response){
+            verbose && console.log('successfully put in the db:');
+            res.sendStatus(200);
+        }).catch(function(error){
+            verbose && console.log('error with the db: ', error);
+            res.sendStatus(500);
+        });
+    
+});
+
+
 module.exports = router;

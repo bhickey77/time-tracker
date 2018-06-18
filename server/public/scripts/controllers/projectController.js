@@ -5,6 +5,10 @@ app.controller('ProjectController', ['ProjectService', 'NgTableParams', '$mdDial
     
     self.tableParams = {};
 
+    self.new_project_name = '';
+    self.update_name = '';
+    self.update_id = '';
+
     self.requestProjects = function(){
         ProjectService.getProjects().then(function(response){
             verbose && console.log('back from service: ', response);
@@ -20,12 +24,11 @@ app.controller('ProjectController', ['ProjectService', 'NgTableParams', '$mdDial
         })
     }
 
-    self.handleSubmit = function(){
-        ProjectService.addProjectToServer(self.input).then(function(response){
+    self.handleSubmit = function(new_project_name){
+        verbose && console.log(`handling submit: `, new_project_name);
+        ProjectService.addProjectToServer(new_project_name).then(function(response){
             self.requestProjects();
-            for(field in self.input){
-                self.input[field] = null;
-            }
+            self.new_project_name = '';
             $mdDialog.hide();
         })
     }
@@ -44,13 +47,43 @@ app.controller('ProjectController', ['ProjectService', 'NgTableParams', '$mdDial
                 },
                 projects: self.projects,
                 handleSubmit: self.handleSubmit,
-                input: self.input
+                new_project_name: self.new_project_name
             },
             controller: function(){},
             controllerAs: 'vm',
             clickOutsideToClose: true
         });
     }
+
+    self.displayUpdateDialog = function(id, name){
+        self.update_id = id;
+        self.update_name = name;
+        $mdDialog.show({
+            parent: angular.element(document.body),
+            templateUrl: '../../views/dialogs/projectUpdateDialog.html',
+            bindToController: true,
+            locals: {
+                close: function close(){
+                    $mdDialog.cancel();
+                },
+                projects: self.projects,
+                handleUpdate: self.handleUpdate,
+                input: self.input,
+                update_id: self.update_id,
+                update_name: self.update_name
+            },
+            controller: function(){},
+            controllerAs: 'vm',
+            clickOutsideToClose: true
+        });
+    }
+
+    self.handleUpdate = function(update_name){
+        ProjectService.updateProjectOnServer(self.update_id, update_name).then(function(){
+            self.requestProjects();
+            $mdDialog.hide();
+        });
+    }   
 
     self.requestProjects();
 
