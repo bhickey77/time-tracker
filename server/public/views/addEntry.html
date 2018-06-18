@@ -12,8 +12,8 @@
                 {{entry.date}}</td>
             <td title="'Time'" filter="{ hours: 'text'}" sortable="'time_spent'">
                 {{entry.time_spent}}</td>
-            <td title="'Delete'" filter="{}" sortable="''">
-                <button ng-click="vm.handleDelete(entry.id)">Delete</button></td>
+            <td class="delete-column" title="''" filter="{}" sortable="''">
+                <md-button class="md-raised md-warn" ng-click="vm.handleDelete(entry.id)">Delete</md-button></td>
         </tr>
     </table>
 

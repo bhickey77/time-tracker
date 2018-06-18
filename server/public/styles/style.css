@@ -39,3 +39,11 @@ md-card {
     margin: 0 auto;
     margin-bottom: 10px;
 }
+
+.update-project {
+    width: 100px;
+}
+
+.delete-column {
+    width: 100px;
+}

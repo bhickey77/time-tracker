@@ -1,4 +1,4 @@
-let app = angular.module('timeTrackerApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngMaterialDatePicker', 'ngTable']);
+let app = angular.module('timeTrackerApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngMaterialDatePicker', 'ngTable', 'chart.js']);
 
 app.config(function($routeProvider){
     $routeProvider.when('/', {

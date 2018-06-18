@@ -21,6 +21,7 @@
     "angular": "^1.7.2",
     "angular-animate": "^1.7.2",
     "angular-aria": "^1.7.2",
+    "angular-chart.js": "^1.1.1",
     "angular-material": "^1.1.9",
     "angular-material-time-picker": "^1.0.8",
     "angular-messages": "^1.7.2",

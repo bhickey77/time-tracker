@@ -16,56 +16,61 @@
         <link rel="stylesheet" href="vendors/angular-material.min.css">
         <link rel="stylesheet" href="styles/style.css">
 
+    </head>
+    <body ng-app="timeTrackerApp">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+            <md-content class="md-padding">
+                <div class="container">
+                    <md-nav-bar
+                    class="float-right"
+                    md-no-ink-bar="disableInkBar"
+                    md-selected-nav-item="currentNavItem"
+                    nav-bar-aria-label="navigation links">
+                        <md-nav-item md-nav-href="#!/add" name="page1">
+                            Entries
+                        </md-nav-item>
+                        <md-nav-item md-nav-href="#!/project" name="page2">
+                            Projects
+                        </md-nav-item>
+                        <!-- <md-nav-item md-nav-href="#!/report" name="page3">
+                            Reports
+                        </md-nav-item> -->
+                </div>
+            </md-nav-bar>
+        </md-content>
+        
+        <ng-view></ng-view>
+        
+        <script src="" async defer></script>
         <!-- SCRIPTS -->
         <script src="vendors/moment.min.js"></script>
-
+    
         <script src="vendors/angular.min.js"></script>
         <script src="vendors/angular-route.min.js"></script>
-
+    
         <script src="vendors/angular-animate.min.js"></script>
         <script src="vendors/angular-aria.min.js"></script>
         <script src="vendors/angular-material.min.js"></script>
         <script src="vendors/angular-messages.min.js"></script>
         <script src="vendors/ng-table.min.js"></script>
-
+        
         <script src="vendors/angular-material-datetimepicker.min.js"></script>
-
+        
         <script src="scripts/appConfig.js"></script>
-
+        
         <script src="scripts/controllers/homeController.js"></script>
         <script src="scripts/controllers/addController.js"></script>
         <script src="scripts/controllers/projectController.js"></script>
-        <script src="scripts/controllers/reportController.js"></script>
-
+        
         <script src="scripts/services/homeService.js"></script>
         <script src="scripts/services/addService.js"></script>
         <script src="scripts/services/projectService.js"></script>
-        <script src="scripts/services/reportService.js"></script>
-
-    </head>
-    <body ng-app="timeTrackerApp">
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <md-content class="md-padding">
-            <md-nav-bar
-                md-no-ink-bar="disableInkBar"
-                md-selected-nav-item="currentNavItem"
-                nav-bar-aria-label="navigation links">
-                <md-nav-item md-nav-href="#!/add" name="page1">
-                    Entries
-                </md-nav-item>
-                <md-nav-item md-nav-href="#!/project" name="page2">
-                    Projects
-                </md-nav-item>
-                <md-nav-item md-nav-href="#!/report" name="page3">
-                    Reports
-                </md-nav-item>
-            </md-nav-bar>
-        </md-content>
         
-        <ng-view></ng-view>
-
-        <script src="" async defer></script>
+        <script src="vendors/Chart.js"></script>
+        <script src="vendors/angular-chart.js"></script>
+        <script src="scripts/services/reportService.js"></script>
+        <script src="scripts/controllers/reportController.js"></script>
     </body>
-</html>
+    </html>

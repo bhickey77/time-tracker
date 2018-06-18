@@ -9,10 +9,10 @@
                 {{project.project_name}}</td>
             <td title="'Hours Spent'" filter="{ hours: 'text'}" sortable="'hours'">
                 {{project.time_spent}}</td>
-            <td title="''" filter="{}" sortable="''">
-                <button ng-click="vm.displayUpdateDialog(project.id, project.project_name)">Update</button></td>
-            <td title="''" filter="{}" sortable="''">
-                <button ng-click="vm.handleDelete(project.id)">Delete</button></td>
+            <td class="update-project" title="''" filter="{}" sortable="''">
+                <md-button class="md-raised" ng-click="vm.displayUpdateDialog(project.id, project.project_name)">Update</md-button></td>
+            <td class="delete-column" title="''" filter="{}" sortable="''">
+                <md-button class="md-raised md-warn" ng-click="vm.handleDelete(project.id)">Delete</md-button></td>
         </tr>
     </table>
 </div>
